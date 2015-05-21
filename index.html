@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>G ; Notes</title>
+  <meta name="author" content="OTAKU_G">
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta property="og:site_name" content="G ; Notes"/>
+
+  
+    <meta property="og:image" content="undefined"/>
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="G ; Notes" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">G ; Notes</a></h1>
+  <h2><a href="/">學習與生活筆記</a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div></header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-21T12:21:06.000Z"><a href="/2015/05/21/ruby-symbol/">2015-05-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/21/ruby-symbol/">Ruby 學習筆記：Symbol</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>最近被朋友 Tony 推了 Rails 坑，由於之前有 Laravel 的經驗，Rails 上手還滿快的，倒是 Ruby 的語法讓我有點疑惑，跟過去使用的 PHP 有不小差異，所以想把學習過程的新發現作個筆記。</p>
+<p>在 PHP 裡的 array，可以像這樣直接把字串當作 key：</p>
+<pre><code><span class="variable">$servant</span> = <span class="keyword">array</span>(<span class="string">"Saber"</span> =&gt; <span class="string">"Altria"</span>, <span class="string">"Assassin"</span> =&gt; <span class="string">"Hasan"</span>);
+<span class="keyword">echo</span> <span class="variable">$servant</span>[<span class="string">"Saber"</span>]; <span class="comment">//Altria</span>
+</code></pre><p>在 Ruby 裡的 hash，也可以把字串當作 key：</p>
+<pre><code>servant = {<span class="string">"Saber"</span> =&gt; <span class="string">"Altria"</span>, <span class="string">"Assassin"</span> =&gt; <span class="string">"Hasan"</span>}
+servant[<span class="string">"Saber"</span>] <span class="comment">//Altria</span>
+</code></pre><p>但在 Rails 或其他地方會常看到：</p>
+<pre><code>servant = {:Saber =&gt; <span class="string">"Altria"</span>, :Assassin =&gt; <span class="string">"Hasan"</span>}
+servant[:Saber] <span class="comment">//Altria</span>
+</code></pre><p>為什麼 key 不是用一般的字串表示，而是前面加了冒號「:」？</p>
+<p>這是 Ruby 的 Symbol，常用來當作 hash 的 key。Ruby 是個萬物皆物件的程式語言（讓人想到 JavaScript），連字串也是物件，而相同的字串內容不會是同一個物件。拿 IRB 測試一下：</p>
+<pre><code><span class="string">"Saber"</span>.<span class="operator">equal</span> ? (<span class="string">"Saber"</span>)
+=&gt; <span class="keyword">false</span>
+</code></pre><p>用 Symbol 來表示，會是同個物件：</p>
+<pre><code><span class="attribute">:Saber.equal ? :Saber</span>
+=&gt; true
+</code></pre><p>使用 Symbol 的好處是不用像字串每次使用都會新增物件，效能會比較好。另一個好處是更好區分 hash 的 key 與 valve。</p>
+<p>另外補充，Symbol 也可以用一段句子表示，但因為其中有空格，所以要加上引號「”」：</p>
+<p><code>:&quot;The world is not beautiful. Therefore , it is.&quot;</code></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="搜尋">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
+
+  
+<div class="widget tag">
+  <h3 class="title">分類</h3>
+  <ul class="entry">
+  
+    <li><a href="/categories/Ruby/">Ruby</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">標籤</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/Ruby/">Ruby</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2015 OTAKU_G
+  
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
+</body>
+</html>
