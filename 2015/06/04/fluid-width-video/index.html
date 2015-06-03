@@ -111,7 +111,7 @@
 <p><img src="/img/20150604/02.png" alt="我手機上的畫面"></p>
 <p>YEAH！完成！</p>
 <p>等等，好像那裡不對！在這篇文章之前，blog 只有四個影片，所以一個一個新增 div 可以很快，但假如我之前有一百個、上千個影片，不就加到崩潰痛哭？而且在每次在文章嵌入 YouTube ，都要自己新增一個 div，實在有點奇怪。我們需要一支程式來解決這個問題！</p>
-<h1 id="JavaScript">JavaScript</h1><p>CSS-Tricks 那篇文章上面已經有提供用 jQuery 寫的一支自動調整影片寬高的程式，但直接照著寫，實在沒什麼意思。而且我只要簡單的把每個 YouTube 的 iframe 各自用父元素包起來就好了。<del>code 好多行好可怕，我有看到 code 太多行會死的病。</del></p>
+<h1 id="JavaScript">JavaScript</h1><p>CSS-Tricks 那篇文章上面已經有提供用 jQuery 寫的一支自動調整影片寬高的程式，但直接照著寫，實在沒什麼意思。而且我只要簡單把每個 YouTube 的 iframe 各自用父元素包起來就好了。<del>code 好多行好可怕，我有看到 code 太多行會死的病。</del></p>
 <p>在 <em>/themes/light/source/js/</em> 裡新增一個檔案，取名叫 <em>fluidVideo.js</em>。然後裡面的內容：</p>
 <pre><code><span class="comment">// /themes/light/source/js/fluidVideo.js</span>
 <span class="comment">// 取得頁面中嵌入的的 YouTube 影片</span>
