@@ -6,6 +6,10 @@
   <title>G ; Notes</title>
   <meta name="author" content="OTAKU_G">
   
+
+  <!-- 自己新增的 og:description -->
+  
+
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -13,7 +17,7 @@
   <meta property="og:site_name" content="G ; Notes"/>
 
   
-    <meta property="og:image" content="undefined"/>
+    <meta property="og:image" content="cover.jpg"/>
   
 
   <link href="/favicon.png" rel="icon">
@@ -43,6 +47,86 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-06-13T16:58:50.000Z"><a href="/2015/06/14/facebook-og/">2015-06-14</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/06/14/facebook-og/">Facebook 與 Open Graph tags</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p><img src="/img/20150614/01.png" alt="Pavone 與 Pollo 的差距"></p>
+<p>每次看到 Tony 在 Facebook 上的文章連結，再看看我的，總覺得就是輸了一截；少了截圖、標題跟簡述都醜醜的……</p>
+<p>Facebook 抓這些資訊，主要是根據 The Open Graph protocol 的定義的 Open Graph tags，所以我只要加上去就可以了。</p>
+<p>Open Graph tags 直接寫在 HTML meta 的屬性裡，其中 Facebook 上會用的是：<em>og:title</em>、<em>og:description</em>、<em>og:image</em> 等。</p>
+<h1 id="og:image">og:image</h1><p>原本以為我用的 Hexo themes 本來沒有加上 Open Graph tags，結果我直接拿 <em>og:image</em> 當關鍵字搜尋：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!-- themes\light\layout\_partial\head.ejs --&gt;</span>
+...
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span>(page.cover) { </span>%&gt;<span class="xml">
+  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">property</span>=<span class="value">"og:image"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> page.cover </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span> /&gt;</span>
+</span>&lt;%<span class="ruby"> } <span class="keyword">else</span> { </span>%&gt;<span class="xml">
+  <span class="tag">&lt;<span class="title">meta</span> <span class="attribute">property</span>=<span class="value">"og:image"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> config.cover </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span>
+</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+...</span>
+</code></pre><p>原來早就定義好了，還會判斷是 page.cover（文章），還是 config.cover（全站）。我只要直接在 <em>_config.yml</em> 裡加上 <code>cover: cover.jpg</code> 就好。</p>
+<pre><code><span class="comment">// _config.yml</span>
+<span class="attribute">...</span>
+cover: cover<span class="built_in">.</span>jpg
+<span class="attribute">...</span>
+</code></pre><h1 id="og:title">og:title</h1><p>og:title 也一樣已經定義好：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!-- themes\light\layout\_partial\head.ejs --&gt;</span>
+...
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> (page.title){ </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">property</span>=<span class="value">"og:title"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> page.title </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span></span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+...</span>
+</code></pre><p>稍微改一下，加上 <code>config.title</code> ，讓它能出現網站名稱：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!-- themes\light\layout\_partial\head.ejs --&gt;</span>
+...
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> (page.title){ </span>%&gt;<span class="xml"><span class="tag">&lt;<span class="title">meta</span> <span class="attribute">property</span>=<span class="value">"og:title"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> page.title </span>%&gt;<span class="xml"><span class="tag"><span class="value"> | </span></span></span>&lt;%=<span class="ruby"> config.title </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>/&gt;</span></span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+...</span>
+</code></pre><h1 id="description">description</h1><p>og:description 就沒定義了，倒是有定義 meta 原本的 description，自己加上去就好：</p>
+<pre><code><span class="xml"><span class="comment">&lt;!-- themes\light\layout\_partial\head.ejs --&gt;</span>
+...
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> (page.description){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"description"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> page.description </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } <span class="keyword">else</span> <span class="keyword">if</span> (config.description){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"description"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> config.description </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } <span class="keyword">else</span> <span class="keyword">if</span> (page.excerpt){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"description"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> strip_html(page.excerpt).replace(<span class="regexp">/^\s*/</span>, <span class="string">''</span>).replace(<span class="regexp">/\s*$/</span>, <span class="string">''</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } <span class="keyword">else</span> <span class="keyword">if</span> (page.content){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">name</span>=<span class="value">"description"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> strip_html(page.content).replace(<span class="regexp">/^\s*/</span>, <span class="string">''</span>).replace(<span class="regexp">/\s*$/</span>, <span class="string">''</span>).substring(<span class="number">0</span>, <span class="number">150</span>) </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+
+<span class="comment">&lt;!-- 自己新增的 og:description --&gt;</span>
+</span>&lt;%<span class="ruby"> <span class="keyword">if</span> (page.description){ </span>%&gt;<span class="xml">
+<span class="tag">&lt;<span class="title">meta</span> <span class="attribute">property</span>=<span class="value">"og:description"</span> <span class="attribute">content</span>=<span class="value">"</span></span></span>&lt;%=<span class="ruby"> page.description </span>%&gt;<span class="xml"><span class="tag"><span class="value">"</span>&gt;</span>
+</span>&lt;%<span class="ruby"> } </span>%&gt;<span class="xml">
+...</span>
+</code></pre><p>那些變數預設也是都沒有定義；不過，Facebook 還是會擷取網站內容當作 description，這邊有需要再另外加就好。</p>
+<h1 id="參考網站">參考網站</h1><p><a href="http://ogp.me/" target="_blank" rel="external">The Open Graph protocol</a><br><a href="https://developers.facebook.com/docs/sharing/best-practices" target="_blank" rel="external">Facebook Developers Docs: Best Practices</a></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
   <article class="post">
   
   <div class="post-content">
@@ -92,7 +176,7 @@
 <h1 id="注釋">注釋</h1><ol>
 <li>Sunrise 其實在 2012 年就有製作過偶像番《偶像學園》，因此種下了之後製作《LoveLive!》動畫的伏筆？</li>
 </ol>
-<h1 id="校正">校正</h1><p><strong>2015-06-13: 感謝 TangSong 指正：</strong></p>
+<h1 id="校正">校正</h1><p><strong>2015-06-13: 感謝唐宋指正：</strong></p>
 <ol>
 <li><del>初めまちて</del> 初めまして</li>
 <li><del>どちぞよろしく</del> どうぞよろしく</li>
@@ -159,7 +243,7 @@
 <p><del>因為課本沒有任何解釋，學生才會更認真聽課作筆記？</del></p>
 <p><del>這讓我意識到，《みんなの日本語》根本是出版社跟補習班的共策陰謀吧！</del></p>
 <p><img src="/img/20150611/02.jpg" alt="《みんなの日本語》與《日本語 GOGOGO》"></p>
-<h1 id="校正">校正</h1><p><strong>2015-06-11: 感謝 TangSong 指正：「お願いたします」多了一個た，正確應為「お願いします」。</strong><br><strong>2015-06-12: 感謝 TangSong 指正：</strong></p>
+<h1 id="校正">校正</h1><p><strong>2015-06-11: 感謝唐宋指正：「お願いたします」多了一個た，正確應為「お願いします」。</strong><br><strong>2015-06-12: 感謝唐宋指正：</strong></p>
 <ol>
 <li><strong>「おはよう ございます」的「お」打成「あ」</strong></li>
 <li><strong>「かね」與「かのじょ」的「か」打成「が」</strong></li>
@@ -508,7 +592,7 @@ $(allVideos).each(<span class="function"><span class="keyword">function</span><s
 <li>某 H-Game 指的是《School Days》。男主角「伊藤誠」被觀眾稱作「人渣誠」、「渣誠」、「自走砲」等等。</li>
 <li>生肉（RAW）指的是還沒翻譯、最新鮮的作品，反之翻譯過後的稱作「熟肉」。</li>
 </ol>
-<h1 id="校正">校正</h1><p><strong>2015-05-24: 感謝好友 TangSong 指正：正確寫法是「こんにちは」，不是「こにぎわ」。</strong></p>
+<h1 id="校正">校正</h1><p><strong>2015-05-24: 感謝好友唐宋指正：正確寫法是「こんにちは」，不是「こにぎわ」。</strong></p>
 
       
     </div>
@@ -596,7 +680,11 @@ servant[:Saber] <span class="comment">//Altria</span>
   <h3 class="title">分類</h3>
   <ul class="entry">
   
+    <li><a href="/categories/Facebook/">Facebook</a><small>1</small></li>
+  
     <li><a href="/categories/Front-end/">Front-end</a><small>1</small></li>
+  
+    <li><a href="/categories/Hexo/">Hexo</a><small>0</small></li>
   
     <li><a href="/categories/Ruby/">Ruby</a><small>1</small></li>
   
@@ -615,15 +703,19 @@ servant[:Saber] <span class="comment">//Altria</span>
   
     <li><a href="/tags/CSS/">CSS</a><small>1</small></li>
   
+    <li><a href="/tags/Facebook/">Facebook</a><small>1</small></li>
+  
     <li><a href="/tags/Front-end/">Front-end</a><small>1</small></li>
   
-    <li><a href="/tags/Hexo/">Hexo</a><small>1</small></li>
+    <li><a href="/tags/Hexo/">Hexo</a><small>2</small></li>
   
     <li><a href="/tags/JavaScript/">JavaScript</a><small>1</small></li>
   
     <li><a href="/tags/LoveLive/">LoveLive!</a><small>1</small></li>
   
     <li><a href="/tags/Ruby/">Ruby</a><small>1</small></li>
+  
+    <li><a href="/tags/The-Open-Graph-protocol/">The Open Graph protocol</a><small>1</small></li>
   
     <li><a href="/tags/jQuery/">jQuery</a><small>1</small></li>
   
