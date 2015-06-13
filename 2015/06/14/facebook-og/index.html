@@ -21,7 +21,7 @@
   <meta property="og:site_name" content="G ; Notes"/>
 
   
-    <meta property="og:image" content="cover.jpg"/>
+    <meta property="og:image" content="/img/cover.jpg"/>
   
 
   <link href="/favicon.png" rel="icon">
@@ -81,9 +81,9 @@
 ...</span>
 </code></pre><p>原來早就定義好了，還會判斷是 page.cover（文章），還是 config.cover（全站）。我只要直接在 <em>_config.yml</em> 裡加上 <code>cover: cover.jpg</code> 就好。</p>
 <pre><code><span class="comment">// _config.yml</span>
-<span class="attribute">...</span>
-cover: cover<span class="built_in">.</span>jpg
-<span class="attribute">...</span>
+...
+<span class="string">cover:</span> <span class="regexp">/img/</span>cover.jpg
+...
 </code></pre><h1 id="og:title">og:title</h1><p>og:title 也一樣已經定義好：</p>
 <pre><code><span class="xml"><span class="comment">&lt;!-- themes\light\layout\_partial\head.ejs --&gt;</span>
 ...
@@ -193,8 +193,6 @@ cover: cover<span class="built_in">.</span>jpg
     <li><a href="/categories/Facebook/">Facebook</a><small>1</small></li>
   
     <li><a href="/categories/Front-end/">Front-end</a><small>1</small></li>
-  
-    <li><a href="/categories/Hexo/">Hexo</a><small>0</small></li>
   
     <li><a href="/categories/Ruby/">Ruby</a><small>1</small></li>
   
