@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   
-  <title>初級日語學習週記 Week 2：五十音（下） | G ; Notes</title>
+  <title>AngularJS Directives: ng-repeat | G ; Notes</title>
   <meta name="author" content="OTAKU_G">
   
-  <meta name="description" content="Day 1：拗音、濁音、半濁音先複習片假名沒多久，就進行今天的進度。從這次進度開始，感覺有點撞牆，平假名與片假名還沒背得很熟，又多了拗音、濁音與半濁音，記憶漸漸混亂。
-拗音真的就跟教育部國語辭典裡對「拗」的解釋一下，唸起來很不順口。
-上個星期我還在嫌棄單薄的講義，這週連講義都沒有了，不會補習班有在看">
+  <meta name="description" content="ng-repeat 是除了 ng-app 與 ng-controller 兩個一定會用到的 driectives 外，可能最常被用到的 driectives；可以用來迭代顯示陣列與物件中的資料。
+迭代陣列JS Bin on jsbin.comng-repeat 最常見的就是用來迭代陣列中的資料。
+迭">
   
 
   <!-- 自己新增的 og:description -->
@@ -17,7 +17,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-  <meta property="og:title" content="初級日語學習週記 Week 2：五十音（下）"/>
+  <meta property="og:title" content="AngularJS Directives: ng-repeat"/>
   <meta property="og:site_name" content="G ; Notes"/>
 
   
@@ -56,38 +56,27 @@
     <header>
       
         <div class="icon"></div>
-        <time datetime="2015-06-02T12:14:57.000Z"><a href="/2015/06/02/learn-japanese-2/">2015-06-02</a></time>
+        <time datetime="2015-06-16T17:10:30.000Z"><a href="/2015/06/17/ng-repeat/">2015-06-17</a></time>
       
       
   
-    <h1 class="title">初級日語學習週記 Week 2：五十音（下）</h1>
+    <h1 class="title">AngularJS Directives: ng-repeat</h1>
   
 
     </header>
     <div class="entry">
       
-        <p><img src="/img/20150602/01.jpg" alt="在臺北的這幾天都沒時間背片假名，只好利用回程的時間。"></p>
-<h1 id="Day_1：拗音、濁音、半濁音">Day 1：拗音、濁音、半濁音</h1><p>先複習片假名沒多久，就進行今天的進度。從這次進度開始，感覺有點撞牆，平假名與片假名還沒背得很熟，又多了拗音、濁音與半濁音，記憶漸漸混亂。</p>
-<p>拗音真的就跟教育部國語辭典裡對「<a href="https://www.moedict.tw/%E6%8B%97" target="_blank" rel="external">拗</a>」的解釋一下，唸起來很不順口。</p>
-<p>上個星期我還在嫌棄單薄的講義，這週連講義都沒有了，不會補習班有在看我的文章吧？<del>對不起，我錯了。</del>更不幸的是，我今天剛好又忘記帶筆記本，只能落魄的寫在小小的廢紙上。</p>
-<p>(σ′▽‵)′▽‵)σ 哈哈哈哈～你看看你</p>
-<p>另外，意外注意到あえか老師用日文輸入法打網址的時候，輸入的是五十音，但輸出是英文單字，感覺莫名帥氣（？）。</p>
-<h1 id="Day_2：長音、促音">Day 2：長音、促音</h1><p>今天真的爆了，可能是上蒼對我沒有很認真上課的懲罰，在上完長音與促音後，あいか老師問了我們這個要怎麼唸：</p>
-<p><strong>おっととおとうととおっとー</strong></p>
-<p>(☉д⊙)</p>
-<p><del>這個像是頭壓在鍵盤上打出的一串字是什麼！</del>あいか老師又每次從我先問，我整個呆掉唸不出來。今天另外來上課的兩位同學都很順暢的唸完，但我聽完他們唸完，我還是看不懂這要怎麼唸啊！<del>這是欺負我這語言障礙的羞恥 Play 啊！</del>。･ﾟ･(つд`ﾟ)･ﾟ･</p>
-<p>あえか老師還舉了一個例子說明，同個詞用了長音或促音後，意思會不同：<br>きて（來）、きって（郵票）、きいて（傾聽）</p>
-<p>但我當然怎麼發都很像……(´・ω・`)</p>
-<p>最後教了日文數字：いち、に、さん、し、ご、ろく、なな、はち、きゅう、じゅう<br><del>結束我這羞恥的一週。</del></p>
-<p>日文數字複習教材（？）：</p>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/WUODSIxcMC8" frameborder="0" allowfullscreen></iframe>
-
-
-<p>繪麻小天使萌萌的 (〃∀〃)</p>
-<h1 id="作筆記">作筆記</h1><p>從以前在學校到現在就很不喜歡作筆記，除了覺得麻煩外，另一方面是覺得自己的字很醜，看得就討厭。比起手寫，當然是更喜歡數位筆記。自從上課後，發現我必須透過筆記去記錄，方便平常的複習，所以我開始摸索與嘗試筆記的模式。希望有人也可以給我建議。</p>
-<p>一開始打算用一本小小的筆記本就搞定，但我實在沒辦法同時很專心作筆記跟聽課。我又再買了一本比較大的筆記本，小的筆記本還是上課時用，內容寫得很快很草，只有自己看得懂的程度，回到家再把小筆記本上的內容，重新整理到大筆記本上，在重新謄寫的過程還可以順便複習。</p>
-<p>我還上網查了一下要怎麼在筆記上應用多種顏色，不過找不到一個我覺得適合的例子，所以我決定用自己的模式：<br>黑色－主要<br>藍色－強調<br>綠色－中文解釋或補充說明<br>紅色－特別重要（現在還沒出現過）</p>
-<p><img src="/img/20150602/02.jpg" alt="不管那本，字都是醜的。"></p>
+        <p>ng-repeat 是除了 ng-app 與 ng-controller 兩個一定會用到的 driectives 外，可能最常被用到的 driectives；可以用來迭代顯示陣列與物件中的資料。</p>
+<h1 id="迭代陣列">迭代陣列</h1><p><a class="jsbin-embed" href="http://jsbin.com/kenoruhobu/embed?html,js,output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script><br>ng-repeat 最常見的就是用來迭代陣列中的資料。</p>
+<h1 id="迭代物件">迭代物件</h1><p><a class="jsbin-embed" href="http://jsbin.com/dikizeyile/embed?html,js,output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script><br>也可以用來迭代物件。</p>
+<p>除了使用物件之外，還有點不一樣的地方是，在 ng-repeat 裡引數也可以使用 (key, value) 的形式，用來顯示 key。另外在迭代物件時，它會根據 key 值進行排序；如果改用陣列，key 就會是陣列的 index。在我的書上有還有提到會根據英文字母與大小寫進行排序，但我實作出來是沒有效果的。</p>
+<h1 id="helper_變數">helper 變數</h1><p><a class="jsbin-embed" href="http://jsbin.com/dujekofoqo/embed?html,js,output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script><br>ng-repeat 提供一些 helper 變數來方便開發。</p>
+<h2 id="$first、$middle、$last">$first、$middle、$last</h2><p>輸出都是 boolean，就像變數名稱一樣，分別用來表示項目是第一項、中間項，還是最後項。</p>
+<h2 id="$index">$index</h2><p>該項目在陣列裡的牽引。要注意的是，如果迭代的是物件，不是根據物件的 key，而是排序後的 index。</p>
+<h2 id="$odd、$even">$odd、$even</h2><p>輸出都是 boolean，用來表示項目的牽引是基數項或偶數項。</p>
+<h1 id="追蹤">追蹤</h1><p><a class="jsbin-embed" href="http://jsbin.com/pudelomowi/embed?html,js,output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script><br>追蹤是比較進階的用法，用來優化效能。ng-repaet 為了追蹤資料的新增、刪除與修改，會在 DOM 中加入 $$hashKey 屬性來當作識別。而從上面的 DEMO 來看，如果資料更新後，即使內容相同，還是會重新產生 DOM。</p>
+<p><a class="jsbin-embed" href="http://jsbin.com/hogomavaki/embed?html,js,output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script><br>在 ng-repeat 的引數加上 track by 就可以用我們定義的屬性當作識別，當資料內容相同時，不會另外產生 DOM，也不會新增 $$hashKey 屬性。這在資料來源來自資料庫，而且資料量很大（幾萬筆資料）的狀況，效益特別大。</p>
+<h1 id="跨容器">跨容器</h1><p><a class="jsbin-embed" href="http://jsbin.com/jinovonipi/embed?html,js,output" target="_blank" rel="external">JS Bin on jsbin.com</a><script src="http://static.jsbin.com/js/embed.js"></script><br>ng-repeat 使用上也可以跨兩個容器（就只能兩個）。這個比較少用，通常需要 ng-repeat 跨兩個或兩個以上的容器，應該會選擇重新設計 HTML……</p>
 
       
     </div>
@@ -96,13 +85,13 @@
         
   
   <div class="categories">
-    <a href="/categories/日語/">日語</a>
+    <a href="/categories/AngularJS/">AngularJS</a>
   </div>
 
         
   
   <div class="tags">
-    <a href="/tags/日語/">日語</a>, <a href="/tags/筆記/">筆記</a>, <a href="/tags/週記/">週記</a>
+    <a href="/tags/AngularJS/">AngularJS</a>
   </div>
 
         
@@ -145,7 +134,7 @@
   }(document, 'script', 'facebook-jssdk'));
 </script>
 
-<div class="fb-comments" data-href="http://yoursite.com/2015/06/02/learn-japanese-2/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+<div class="fb-comments" data-href="http://yoursite.com/2015/06/17/ng-repeat/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
       
   
 </section>
