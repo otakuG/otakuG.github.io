@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   
-  <title>日語 | G ; Notes</title>
+  <title>第 2 頁 | G ; Notes</title>
   <meta name="author" content="OTAKU_G">
   
 
@@ -47,85 +47,66 @@
 <div class="clearfix"></div></header>
   <div id="content" class="inner">
     <div id="main-col" class="alignleft"><div id="wrapper">
-<h2 class="archive-title tag">日語</h2>
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2015-05-21T12:21:06.000Z"><a href="/2015/05/21/ruby-symbol/">2015-05-21</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/05/21/ruby-symbol/">Ruby 學習筆記：Symbol</a></h1>
+  
 
+    </header>
+    <div class="entry">
+      
+        <p>最近被朋友 Tony 推了 Rails 坑，由於之前有 Laravel 的經驗，Rails 上手還滿快的，倒是 Ruby 的語法讓我有點疑惑，跟過去使用的 PHP 有不小差異，所以想把學習過程的新發現作個筆記。</p>
+<p>在 PHP 裡的 array，可以像這樣直接把字串當作 key：</p>
+<pre><code><span class="variable">$servant</span> = <span class="keyword">array</span>(<span class="string">"Saber"</span> =&gt; <span class="string">"Altria"</span>, <span class="string">"Assassin"</span> =&gt; <span class="string">"Hasan"</span>);
+<span class="keyword">echo</span> <span class="variable">$servant</span>[<span class="string">"Saber"</span>]; <span class="comment">//Altria</span>
+</code></pre><p>在 Ruby 裡的 hash，也可以把字串當作 key：</p>
+<pre><code>servant = {<span class="string">"Saber"</span> =&gt; <span class="string">"Altria"</span>, <span class="string">"Assassin"</span> =&gt; <span class="string">"Hasan"</span>}
+servant[<span class="string">"Saber"</span>] <span class="comment">//Altria</span>
+</code></pre><p>但在 Rails 或其他地方會常看到：</p>
+<pre><code>servant = {:Saber =&gt; <span class="string">"Altria"</span>, :Assassin =&gt; <span class="string">"Hasan"</span>}
+servant[:Saber] <span class="comment">//Altria</span>
+</code></pre><p>為什麼 key 不是用一般的字串表示，而是前面加了冒號「:」？</p>
+<p>這是 Ruby 的 Symbol，常用來當作 hash 的 key。Ruby 是個萬物皆物件的程式語言（讓人想到 JavaScript），連字串也是物件，而相同的字串內容不會是同一個物件。拿 IRB 測試一下：</p>
+<pre><code><span class="string">"Saber"</span>.<span class="operator">equal</span> ? (<span class="string">"Saber"</span>)
+=&gt; <span class="keyword">false</span>
+</code></pre><p>用 Symbol 來表示，會是同個物件：</p>
+<pre><code><span class="attribute">:Saber.equal ? :Saber</span>
+=&gt; true
+</code></pre><p>使用 Symbol 的好處是不用像字串每次使用都會新增物件，效能會比較好。另一個好處是更好區分 hash 的 key 與 value。</p>
+<p>另外補充，Symbol 也可以用一段句子表示，但因為其中有空格，所以要加上引號「”」：</p>
+<p><code>:&quot;The world is not beautiful. Therefore, it is.&quot;</code></p>
 
-  <div class="archive">
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2015-06-27T06:25:29.000Z"><a href="/2015/06/27/learn-japanese-6/">2015-06-27</a></time>
-            
-              <h1 class="title"><a href="/2015/06/27/learn-japanese-6/">初級日語學習週記 Week 6：みんなの日本語 L1 - L3</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2015-06-20T08:35:00.000Z"><a href="/2015/06/20/learn-japanese-5/">2015-06-20</a></time>
-            
-              <h1 class="title"><a href="/2015/06/20/learn-japanese-5/">初級日語學習週記 Week 5：みんなの日本語 L2</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2015-06-11T18:07:23.000Z"><a href="/2015/06/12/learn-japanese-4/">2015-06-12</a></time>
-            
-              <h1 class="title"><a href="/2015/06/12/learn-japanese-4/">初級日語學習週記 Week 4：みんなの日本語 L1 - L2</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2015-06-11T08:41:56.000Z"><a href="/2015/06/11/learn-japanese-3/">2015-06-11</a></time>
-            
-              <h1 class="title"><a href="/2015/06/11/learn-japanese-3/">初級日語學習週記 Week 3：みんなの日本語 L1</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2015-06-02T12:14:57.000Z"><a href="/2015/06/02/learn-japanese-2/">2015-06-02</a></time>
-            
-              <h1 class="title"><a href="/2015/06/02/learn-japanese-2/">初級日語學習週記 Week 2：五十音（下）</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
-      <article class="post">
-        <div class="post-content">
-          <header>
-            <div class="icon"></div>
-            <time datetime="2015-05-21T18:12:41.000Z"><a href="/2015/05/22/learn-japanese-1/">2015-05-22</a></time>
-            
-              <h1 class="title"><a href="/2015/05/22/learn-japanese-1/">初級日語學習週記 Week 1：五十音（上）</a></h1>
-            
-          </header>
-        </div>
-      </article>
-    
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
   </div>
-</div></div>
+</article>
+
+
+
+
+
+<nav id="pagination">
+  
+    <a href="/" class="alignleft prev">上一頁</a>
+  
+  
+  <div class="clearfix"></div>
+</nav></div></div>
     <aside id="sidebar" class="alignright">
   <div class="search">
   <form action="//google.com/search" method="get" accept-charset="utf-8">
