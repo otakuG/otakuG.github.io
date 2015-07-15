@@ -53,6 +53,108 @@
     <header>
       
         <div class="icon"></div>
+        <time datetime="2015-06-03T18:46:46.000Z"><a href="/2015/06/04/fluid-width-video/">2015-06-04</a></time>
+      
+      
+  
+    <h1 class="title"><a href="/2015/06/04/fluid-width-video/">Hexo 上能自動調整寬度的 YouTube 影片</a></h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>前天晚上，Tony 丟給我一張截圖。</p>
+<p><img src="/img/20150604/01.jpg" alt="Tony 丟給我的截圖"></p>
+<p><del>我的繪麻小天使滿出來了！</del></p>
+<p>其實在很早之前，我就有發現這問題，但我實在懶得想辦法改 Hexo 的 source。<del>即使 Tony 反應，我還是沒有想改的念頭。</del></p>
+<p>昨天早上，Tony 又丟了東西給我：<a href="https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php" target="_blank" rel="external">CSS-Tricks: Fluid Width Video</a></p>
+<p><strong>啊啊啊啊！他還幫我找到解法了啊！感恩 Tony，讚嘆 Tony！</strong></p>
+<p>好吧！現在沒有 Responsive Web Design，真的很遜，就來改吧！</p>
+<h1 id="CSS">CSS</h1><p>照 CSS-Tricks 網頁上寫方法的來看，我只要在 iframe 外在包一個父元素，再改變它們的 CSS 就好了。</p>
+<p>那就先找到 Hexo 的 CSS 下在那裡。Hexo 設計上的重複利用性很高，前端內容都是透過 themes 裡的 source 去動態產生，所以只要更動 themes，全部頁面就會一起更動。</p>
+<p>很直覺就能找到，CSS 是寫在 <em>/themes/light/source/css/</em>（light 是我目前使用的 theme）這個路徑裡。</p>
+<p>這路徑打開一看……奇怪，怎麼會是我沒看過的 .styl？說好的 .css 呢！</p>
+<p>沒關係，先隨便找一個打開來看一下：</p>
+<pre><code><span class="comment">// /themes/light/source/css/_partial/commant.styl</span>
+<span class="id">#comment</span>
+  <span class="attribute">padding</span> <span class="number">20px</span>
+  <span class="attribute">background</span> <span class="hexcolor">#fff</span>
+  <span class="attribute">box-shadow</span> <span class="number">1px</span> <span class="number">2px</span> <span class="number">3px</span> <span class="hexcolor">#ddd</span>
+  <span class="attribute">margin-bottom</span> <span class="number">50px</span>
+  <span class="class">.title</span>
+    <span class="attribute">font-weight</span> <span class="attribute">normal</span>
+    <span class="attribute">margin-bottom</span> <span class="number">15px</span>
+</code></pre><p>一看就懂，有點像 SASS，那我再把 CSS-Trick 提供的 CSS 改成同樣的規格加上去就好了。</p>
+<p>在感覺上是全域樣板的 <em>layout.styl</em> 裡，在最後面加上：</p>
+<pre><code><span class="comment">// /themes/light/source/css/_base/layout.styl</span>
+<span class="class">.videoWrapper</span>
+  <span class="attribute">position</span> relative
+  <span class="attribute">padding-bottom</span> <span class="number">56.25%</span>
+  <span class="attribute">padding-top</span> <span class="number">25px</span>
+  <span class="attribute">height</span> <span class="number">0</span>
+  <span class="tag">iframe</span>
+    <span class="attribute">position</span> absolute
+    <span class="attribute">top</span> <span class="number">0</span>
+    <span class="attribute">left</span> <span class="number">0</span>
+    <span class="attribute">width</span> <span class="number">100%</span>
+    <span class="attribute">height</span> <span class="number">100%</span>
+</code></pre><p>從這 CSS 來看，這是很常見的寫法。父元素的 possition 設為 relative，子元素設為 absolute，子元素就能以父元素為基準改變位置與大小。在這個例子裡是讓子元素的長寬設為 100%（基準是父元素），我們調整父元素的 padding 間接改變子元素的大小。</p>
+<p>再把文章上的 iframe 用 div 包起來：</p>
+<pre><code>...
+&lt;<span class="tag">div</span> class=<span class="string">"videoWrapper"</span>&gt;
+    &lt;<span class="tag">iframe</span> <span class="attribute">width</span>=<span class="string">"560"</span> <span class="attribute">height</span>=<span class="string">"315"</span> src=<span class="string">"https://www.youtube.com/embed/WUODSIxcMC8"</span> frameborder=<span class="string">"0"</span> allowfullscreen&gt;&lt;/iframe&gt;
+&lt;/div&gt;
+...
+</code></pre><p>最後用 Chrome 的開發者工具或直接用手機看一下：</p>
+<p><img src="/img/20150604/02.png" alt="我手機上的畫面"></p>
+<p>YEAH！完成！</p>
+<p>等等，好像那裡不對！在這篇文章之前，blog 只有四個影片，所以一個一個新增 div 可以很快，但假如我之前有一百個、上千個影片，不就加到崩潰痛哭？而且在每次在文章嵌入 YouTube ，都要自己新增一個 div，實在有點奇怪。我們需要一支程式來解決這個問題！</p>
+<h1 id="JavaScript">JavaScript</h1><p>CSS-Tricks 那篇文章上面已經有提供用 jQuery 寫的一支自動調整影片寬高的程式，但直接照著寫，實在沒什麼意思。而且我只要簡單把每個 YouTube 的 iframe 各自用父元素包起來就好了。<del>code 好多行好可怕，我有看到 code 太多行會死的病。</del></p>
+<p>在 <em>/themes/light/source/js/</em> 裡新增一個檔案，取名叫 <em>fluidVideo.js</em>。然後裡面的內容：</p>
+<pre><code><span class="comment">// /themes/light/source/js/fluidVideo.js</span>
+<span class="comment">// 取得頁面中嵌入的的 YouTube 影片</span>
+<span class="keyword">var</span> allVideos = $(<span class="string">"iframe[src*='//www.youtube.com']"</span>)
+
+<span class="comment">// 把所有的 iframe 包一個 videoWrapper 容器（父元素）</span>
+$(allVideos).each(<span class="function"><span class="keyword">function</span><span class="params">()</span> </span>{
+    $(<span class="keyword">this</span>).wrap(<span class="string">"&lt;div class='videoWrapper'&gt;&lt;/div&gt;"</span>)
+});
+</code></pre><p>去掉註解才四行！再來要讓頁面可以讀到這支 script。</p>
+<p>根據檔名找到 <em>/themes/light/layout/_partial/after.footer.ejs</em> 這個檔案，又是一個沒有看過的格式 <em>.ejs</em>，沒關係一樣直接點進去看；因為原本就有載入其他的 script，就直接複製貼上改路徑就好：</p>
+<pre><code><span class="xml">// /themes/light/layout/_partial/after.footer.ejs
+// 原本就有的 script
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">js/jquery.imagesloaded.min.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">js/gallery.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+
+// 把上面原本的複製起來改路徑
+<span class="tag">&lt;<span class="title">script</span> <span class="attribute">src</span>=<span class="value">"</span></span></span>&lt;%-<span class="ruby"> config.root </span>%&gt;<span class="xml"><span class="tag"><span class="value">js/fluidVideo.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="title">script</span>&gt;</span>
+...</span>
+</code></pre><p>最後把剛剛在文章中新增的 div 都拿掉，就真的完成了！</p>
+<p><img src="/img/20150604/03.gif" alt=""></p>
+<p><del>我的繪馬小天使變得好柔軟！</del></p>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+
+
+  <article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
         <time datetime="2015-06-02T12:14:57.000Z"><a href="/2015/06/02/learn-japanese-2/">2015-06-02</a></time>
       
       
@@ -373,7 +475,7 @@ servant[:Saber] <span class="comment">//Altria</span>
   
     <li><a href="/categories/旅行/">旅行</a><small>2</small></li>
   
-    <li><a href="/categories/日語/">日語</a><small>8</small></li>
+    <li><a href="/categories/日語/">日語</a><small>9</small></li>
   
   </ul>
 </div>
@@ -410,7 +512,7 @@ servant[:Saber] <span class="comment">//Altria</span>
   
     <li><a href="/tags/旅行/">旅行</a><small>2</small></li>
   
-    <li><a href="/tags/日語/">日語</a><small>8</small></li>
+    <li><a href="/tags/日語/">日語</a><small>9</small></li>
   
     <li><a href="/tags/碎碎唸/">碎碎唸</a><small>1</small></li>
   
@@ -418,7 +520,7 @@ servant[:Saber] <span class="comment">//Altria</span>
   
     <li><a href="/tags/臺北/">臺北</a><small>1</small></li>
   
-    <li><a href="/tags/週記/">週記</a><small>8</small></li>
+    <li><a href="/tags/週記/">週記</a><small>9</small></li>
   
     <li><a href="/tags/高雄/">高雄</a><small>1</small></li>
   
